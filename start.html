@@ -34,7 +34,14 @@
             .then(response => response.json())
             .then(jsonObject => {
               console.log(jsonObject);
+              //Start will return session ID
+
+                //Save session ID to local storage...
+
+
             });
+
+
       let session_url = "https://codecyprus.org/th/api/question?session=" + treasureHuntID;
       console.log(session_url);
       fetch(session_url)
