@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start page</title>
+</head>
+<body>
+
+<p>Enter your name:</p>
+<input type="text" id="playerName" />
+<input type="button" value="Start" onclick="startGame(appName, uuid);" />
+
+<script>
+  const params = new URLSearchParams(location.search);
+  let uuid = null;
+
+  let playerNameField = document.getElementById("playerName");
+  const appName = "Team2-App";
+
+  if (params.has("treasureHuntID")) {
+    uuid = params.get("treasureHuntID");
+  }
+  else {
+    alert("No UUID");
+  }
+
+
+
+  function startGame(appName, treasureHuntID) {
+      let playerName = playerNameField.value;
+      let url = "https://codecyprus.org/th/api/start?player=" + playerName + "&app=" + appName + "&treasure-hunt-id=" + treasureHuntID;
+      console.log(url);
+      fetch(url)
+            .then(response => response.json())
+            .then(jsonObject => {
+              console.log(jsonObject);
+            });
+      let session_url = "https://codecyprus.org/th/api/question?session=" + treasureHuntID;
+      console.log(session_url);
+      fetch(session_url)
+          .then(response => response.json())
+          .then(jsonObject => {
+              console.log(jsonObject);
+          });
+
+  }
+
+</script>
+
+</body>
+</html>

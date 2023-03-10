@@ -26,7 +26,7 @@ async function doList() {
             "<li>" +
             "<b>" + treasureHuntsArray[i].name + "</b><br/>" + // the treasure hunt name is shown in bold...
             "<i>" + treasureHuntsArray[i].description + "</i><br/>" + // and the description in italics in the following line
-            "<a href=\"javascript:select(\'" + treasureHuntsArray[i].uuid + "\')\">Start</a>" + // and the description in italics in the following line
+            "<a href='start.html?treasureHuntID=" + treasureHuntsArray[i].uuid + "'>Start</a>" + // and the description in italics in the following line
             "</li>";
     }
     listHtml += "</ul>";
