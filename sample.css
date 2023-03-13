@@ -1,5 +1,5 @@
 h1 {
-    color: cyan;
+    color: blue;
 }
 button {
     background-color: lightblue;
@@ -54,9 +54,5 @@ div.testMessage {
     100% { transform: rotate(360deg); }
 }
 
-body{
-    background-image: url('sail.png');
-    background-size: cover;
-    background-repeat: no-repeat;
 
-}
+
