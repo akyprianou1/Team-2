@@ -47,4 +47,5 @@ async function select(uuid) {
     console.log("Selected treasure hunt with UUID: " + uuid);
     // todo add your own code ...
 
+
 }

@@ -8,7 +8,7 @@
 <div class="background">
 <p>Enter your name, matey:</p>
 <input type="text" id="playerName" />
-<input type="button" value="Start" onclick="startGame(appName, uuid);" />
+<a href="session.html"><input type="button" value="Start" onclick="startGame(appName, uuid); " /></a>
 
 <script>
   const params = new URLSearchParams(location.search);
@@ -34,21 +34,12 @@
             .then(response => response.json())
             .then(jsonObject => {
               console.log(jsonObject);
+                localStorage.setItem("Game", treasureHuntID);
               //Start will return session ID
 
                 //Save session ID to local storage...
 
-
             });
-
-
-      let session_url = "https://codecyprus.org/th/api/question?session=" + treasureHuntID;
-      console.log(session_url);
-      fetch(session_url)
-          .then(response => response.json())
-          .then(jsonObject => {
-              console.log(jsonObject);
-          });
 
   }
 

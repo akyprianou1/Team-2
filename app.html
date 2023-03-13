@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-  body {
-    background-image: url('sail.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-clip: padding-box;
-  }
-</style>
+
 <head>
   <meta charset="UTF-8">
   <title> Treasure Hunt Web App</title>
@@ -22,7 +15,7 @@
   <hr>
 </div>
 
-<div style="color: cyan">
+<div>
   <p>
     Ahoy matey! Welcome to Treasure Hunt, the app game where ye can test yer pirate knowledge and plunder hidden treasures along the way!
   </p>
@@ -33,15 +26,15 @@
 </div>
 
 <div>
-  <button id="buttonHandleList" onclick="doList(this)">To set sail, press me!</button>
+  <button id="buttonHandleList" onclick="doList()">To set sail, press me!</button>
 </div>
 
 <!--<div id="buttonReload" class="button" onclick="handleList(this)">Reload</div>-->
 <div id="loader" class="loader" hidden></div>
 
-<div style="color: cyan">Choose a treasure Hunt</div>
+<div>Choose a treasure Hunt</div>
 
-<div id="treasureHunts" style="color: cyan">
+<div id="treasureHunts">
   Empty
 </div>
 
@@ -51,7 +44,7 @@
 
 <!--Load the API JavaScript-->
 <script src="th-api.js">
-  doList(this);
+  doList();
 </script>
 
 </body>
