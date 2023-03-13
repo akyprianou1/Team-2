@@ -8,7 +8,7 @@
 
 
 </head>
- <body>
+<body onload="doList();">
 
 <div >
   <h1 align="center">  Treasure Hunt </h1>
@@ -26,7 +26,7 @@
 </div>
 
 <div>
-  <button id="buttonHandleList" onclick="doList()">To set sail, press me!</button>
+  <button id="buttonHandleList" onclick="doList()">Reload</button>
 </div>
 
 <!--<div id="buttonReload" class="button" onclick="handleList(this)">Reload</div>-->
@@ -34,12 +34,12 @@
 
 <div style="color: cyan">Choose a treasure Hunt </div>
 
-<div id="treasureHunts" style="color: cyan">
-  Empty
+<div id="treasureHunts" style="color: cyan" >
+
 </div>
 
 <div id="message" class="infoMessage">
-  No messages
+
 </div>
 
 <!--Load the API JavaScript-->
