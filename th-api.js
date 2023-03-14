@@ -81,3 +81,35 @@ function locationGiven(){
             console.log(jsonObject);
         });
 }
+
+
+
+function startGame(treasureHuntID) {
+    const params = new URLSearchParams(location.search);
+    let uuid = null;
+
+    let playerNameField = document.getElementById("playerName");
+    let appName = "Team2-App";
+
+    if (params.has("treasureHuntID")) {
+        uuid = params.get("treasureHuntID");
+    }
+    else {
+        alert("No UUID");
+    }
+
+    let playerName = playerNameField.value;
+    let url = "https://codecyprus.org/th/api/start?player=" + playerName + "&app=" + appName + "&treasure-hunt-id=" + treasureHuntID;
+    console.log(url);
+    fetch(url)
+        .then(response => response.json())
+        .then(jsonObject => {
+            console.log(jsonObject);
+
+            //Start will return session ID
+            localStorage.setItem("Game", treasureHuntID);
+            //Save session ID to local storage...
+
+        });
+
+}

@@ -55,7 +55,14 @@ div.testMessage {
 }
 
 @media screen and (max-width: 800px){
-    body{
+    #index{
+        width:auto;
+        background-image: url('phone_img.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    #app{
         width:auto;
         background-image: url('phone_img.png');
         background-size: cover;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
     <title>Start page</title>
 </head>
 <body>
@@ -9,40 +9,9 @@
 
 <p>Enter your name, matey:</p>
 <input type="text" id="playerName" />
-<a href="session.html"><input type="button" value="Start" onclick="startGame(appName, uuid); " /></a>
+<a href="session.html"><input type="button" value="Start" onclick="startGame(uuid); " /></a>
 
-<script>
-  const params = new URLSearchParams(location.search);
-  let uuid = null;
-
-  let playerNameField = document.getElementById("playerName");
-  const appName = "Team2-App";
-
-  if (params.has("treasureHuntID")) {
-    uuid = params.get("treasureHuntID");
-  }
-  else {
-    alert("No UUID");
-  }
-
-  function startGame(appName, treasureHuntID) {
-      let playerName = playerNameField.value;
-      let url = "https://codecyprus.org/th/api/start?player=" + playerName + "&app=" + appName + "&treasure-hunt-id=" + treasureHuntID;
-      console.log(url);
-      fetch(url)
-            .then(response => response.json())
-            .then(jsonObject => {
-              console.log(jsonObject);
-
-              //Start will return session ID
-                localStorage.setItem("Game", treasureHuntID);
-                //Save session ID to local storage...
-
-            });
-
-  }
-
+<script src="th-api.js">
 </script>
-
 </body>
 </html>
