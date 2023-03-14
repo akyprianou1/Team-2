@@ -54,5 +54,12 @@ div.testMessage {
     100% { transform: rotate(360deg); }
 }
 
-
+@media screen and (max-width: 600px){
+    body{
+        width:auto;
+        background-image: url('phone_img.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
 
