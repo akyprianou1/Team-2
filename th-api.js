@@ -47,5 +47,37 @@ async function select(uuid) {
     console.log("Selected treasure hunt with UUID: " + uuid);
     // todo add your own code ...
 
+}
 
+function sessionGame() {
+    let session = localStorage.getItem("Game");
+    let session_url = "https://codecyprus.org/th/api/question?session=" + session;
+    console.log(session_url);
+    fetch(session_url)
+        .then(response => response.json())
+        .then(jsonObject => {
+            console.log(jsonObject);
+        });
+}
+
+function answerGiven(){
+    let session = localStorage.getItem("Game");
+    let answer_url = "https://codecyprus.org/th/api/answer?session=" + session;
+    console.log(answer_url);
+    fetch(answer_url)
+        .then(response => response.json())
+        .then(jsonObject => {
+            console.log(jsonObject);
+        });
+}
+
+function locationGiven(){
+    let session = localStorage.getItem("Game");
+    let location = "https://codecyprus.org/th/api/location?session="+ session;
+    console.log(location);
+    fetch(location)
+        .then(response => response.json())
+        .then(jsonObject => {
+            console.log(jsonObject);
+        });
 }

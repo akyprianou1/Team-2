@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Session page</title>
 </head>
-<body>
+<body onload="sessionGame();">
 
 
 
@@ -15,18 +15,7 @@
 
 
 
-<script>
-    function sessionGame() {
-        let session = localStorage.getItem("Game");
-        let session_url = "https://codecyprus.org/th/api/question?session=" + session;
-        console.log(session_url);
-        fetch(session_url)
-            .then(response => response.json())
-            .then(jsonObject => {
-                console.log(jsonObject);
-            });
-    }
-    sessionGame();
+<script src="th-api.js">
 </script>
 
 </body>
