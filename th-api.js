@@ -59,6 +59,29 @@ function sessionGame() {
         .then(response => response.json())
         .then(jsonObject => {
            console.log(jsonObject);
+
+            if (jsonObject.status === "OK") {
+                document.getElementById("question").innerHTML = jsonObject.questionText;
+            }
+            else {
+                alert("Error!");
+            }
+
+
+        });
+}
+
+
+
+
+function answerGiven(answer){
+    let session = localStorage.getItem("GameSession");
+    let answer_url = "https://codecyprus.org/th/api/answer?session=" + session +"&answer="+answer;
+    console.log(answer_url);
+    fetch(answer_url)
+        .then(response => response.json())
+        .then(jsonObject => {
+            console.log(jsonObject);
         });
 }
 
@@ -139,18 +162,6 @@ function startGame() {
 
 
 
-
-
-function answerGiven(){
-    let session = localStorage.getItem("GameSession");
-    let answer_url = "https://codecyprus.org/th/api/answer?session=" + session;
-    console.log(answer_url);
-    fetch(answer_url)
-        .then(response => response.json())
-        .then(jsonObject => {
-            console.log(jsonObject);
-        });
-}
 
 function locationGiven(){
     let session = localStorage.getItem("GameSession");
