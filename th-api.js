@@ -50,19 +50,33 @@ async function select(uuid) {
 }
 
 function sessionGame() {
-    let session = localStorage.getItem("Game");
+
+    let session = localStorage.getItem("SessionID");
     let session_url = "https://codecyprus.org/th/api/question?session=" + session;
     console.log(session_url);
+
     fetch(session_url)
         .then(response => response.json())
         .then(jsonObject => {
-            console.log(jsonObject);
+           console.log(jsonObject);
+
+            if (jsonObject.status === "OK") {
+                document.getElementById("question").innerHTML = jsonObject.questionText;
+            }
+            else {
+                alert("Error!");
+            }
+
+
         });
 }
 
-function answerGiven(){
-    let session = localStorage.getItem("Game");
-    let answer_url = "https://codecyprus.org/th/api/answer?session=" + session;
+
+
+
+function answerGiven(answer){
+    let session = localStorage.getItem("GameSession");
+    let answer_url = "https://codecyprus.org/th/api/answer?session=" + session +"&answer="+answer;
     console.log(answer_url);
     fetch(answer_url)
         .then(response => response.json())
@@ -71,20 +85,11 @@ function answerGiven(){
         });
 }
 
-function locationGiven(){
-    let session = localStorage.getItem("Game");
-    let location = "https://codecyprus.org/th/api/location?session="+ session;
-    console.log(location);
-    fetch(location)
-        .then(response => response.json())
-        .then(jsonObject => {
-            console.log(jsonObject);
-        });
-}
 
 
 
-function startGame(treasureHuntID) {
+
+function startGame() {
     const params = new URLSearchParams(location.search);
     let uuid = null;
 
@@ -93,23 +98,78 @@ function startGame(treasureHuntID) {
 
     if (params.has("treasureHuntID")) {
         uuid = params.get("treasureHuntID");
+        console.log("TreasureHuntID");
     }
     else {
         alert("No UUID");
     }
 
     let playerName = playerNameField.value;
-    let url = "https://codecyprus.org/th/api/start?player=" + playerName + "&app=" + appName + "&treasure-hunt-id=" + treasureHuntID;
-    console.log(url);
+    let url = "https://codecyprus.org/th/api/start?player=" + playerName + "&app=" + appName + "&treasure-hunt-id=" + uuid;
     fetch(url)
         .then(response => response.json())
         .then(jsonObject => {
-            console.log(jsonObject);
+
+            if (jsonObject.status === "OK") {
+                const sessionID = jsonObject.session;
+                const numOfQuestions = jsonObject.numOfQuestions;
+                localStorage.setItem("SessionID", sessionID );
+                localStorage.setItem("numOfQuestions", numOfQuestions);
+                location.href = "session.html";
+            }
+            else {
+                alert("Error!");
+            }
+
+
 
             //Start will return session ID
-            localStorage.setItem("Game", treasureHuntID);
+            // localStorage.setItem("GameSession", );
             //Save session ID to local storage...
 
         });
+}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function locationGiven(){
+    let session = localStorage.getItem("GameSession");
+    let location = "https://codecyprus.org/th/api/location?session="+ session;
+    console.log(location);
+    fetch(location)
+        .then(response => response.json())
+        .then(jsonObject => {
+            console.log(jsonObject);
+        });
 }
