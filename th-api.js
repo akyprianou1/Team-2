@@ -45,8 +45,6 @@ async function select(uuid) {
     // For now just print the selected treasure hunt's UUID. Normally, you're expected to guide the user in entering
     // their name etc. and proceed to calling the '/start' command of the API to start a new session.
     console.log("Selected treasure hunt with UUID: " + uuid);
-    // todo add your own code ...
-
 }
 
 function sessionGame() {
@@ -66,22 +64,30 @@ function sessionGame() {
             else {
                 alert("Error!");
             }
-
-
         });
 }
 
 
 
 
-function answerGiven(answer){
+function answerGiven(){
     let session = localStorage.getItem("GameSession");
+    let answer = document.getElementById("answerGiven");
     let answer_url = "https://codecyprus.org/th/api/answer?session=" + session +"&answer="+answer;
     console.log(answer_url);
     fetch(answer_url)
         .then(response => response.json())
         .then(jsonObject => {
             console.log(jsonObject);
+
+            if (jsonObject.status === "OK") {
+               let score = localStorage.getItem("Score");
+                document.getElementById("Score").innerHTML = "Score : ", jsonObject.scoreAdjustment + score;
+                localStorage.setItem("Score", score + jsonObject.scoreAdjustment );
+            }
+            else {
+                alert("Error!");
+            }
         });
 }
 
@@ -120,12 +126,6 @@ function startGame() {
             else {
                 alert("Error!");
             }
-
-
-
-            //Start will return session ID
-            // localStorage.setItem("GameSession", );
-            //Save session ID to local storage...
 
         });
 }

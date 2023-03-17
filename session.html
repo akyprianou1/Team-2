@@ -5,13 +5,12 @@
     <title>Session page</title>
 </head>
 <body onload="sessionGame();">
+<div id="Score"></div>
 <div id="QNumber"></div>
 <div id="question"></div>
 <div>
-    <input type="button" value="A" onclick="answerGiven('A'); " />
-    <input type="button" value="B" onclick="answerGiven('B'); " />
-    <input type="button" value="C" onclick="answerGiven('C'); " />
-    <input type="button" value="D" onclick="answerGiven('D'); " />
+    <input type="text" id="answerGiven" />
+    <input type="button" value="Submit" onclick="answerGiven(); " />
 </div>
 
 
