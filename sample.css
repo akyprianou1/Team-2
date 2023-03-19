@@ -1,9 +1,25 @@
+
+/*Styling The H1*/
 h1 {
     color: blue;
 }
+
+/*Styling The Button in Index*/
 button {
-    background-color: lightblue;
+    background-color: black;
+    color: red;
+    border-radius: 20px;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
+
+/*Set a Hover in Index Button and styling it*/
+button:hover {
+    background-color: black;
+    color: goldenrod;
+}
+
 div {
     margin: 10px;
 }
@@ -54,6 +70,60 @@ div.testMessage {
     100% { transform: rotate(360deg); }
 }
 
+/*Styling The headers 2*/
+h2{
+    text-shadow: 2px 2px 4px red, 4px 4px 25px red;
+    color: black;
+    text-decoration: underline;
+
+}
+
+/*Styling The Creators Class */
+.Creators{
+    text-align: left;
+    color: #f3f3f3;
+    text-shadow: 2px 2px 4px black, 4px 4px red;
+    font-size: 20px;
+
+}
+
+/*Styling The Social Class*/
+.Social{
+    text-align: right;
+}
+
+/*Styling and Position of The Sm Class*/
+.Sm {
+    padding: 20px;
+    width: 17px;
+    border-radius: 40%;
+}
+
+/*Set a Hover in The Sm Class*/
+.Sm:hover {
+    opacity: 0.7;
+}
+
+/*Styling The Facebook Icon*/
+.Sm-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+/*Styling The Youtube Icon*/
+.Sm-youtube {
+    background: #bb0000;
+    color: white;
+}
+
+/*Styling The Twitter Icon*/
+.Sm-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+
+/*Make Responsive All Html Files For Mobile App */
 @media screen and (max-width: 900px){
     #index{
         width:auto;
