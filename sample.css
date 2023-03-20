@@ -1,7 +1,9 @@
 
 /*Styling The H1*/
 h1 {
-    color: blue;
+    text-shadow: 2px 2px 4px Cyan, 4px 4px 25px black;
+    color: White;
+    text-decoration: underline;
 }
 
 /*Styling The Button in Index*/
@@ -19,6 +21,24 @@ button:hover {
     background-color: black;
     color: goldenrod;
 }
+
+/*Styling The Button in Menu*/
+.Menu Button {
+    background-color: cyan;
+    color: mediumpurple;
+    border-radius: 20px;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+/*Set a Hover in Menu Button and styling it*/
+.Menu Button:hover {
+    background-color: rebeccapurple;
+    color: gold;
+}
+
+
 
 div {
     margin: 10px;

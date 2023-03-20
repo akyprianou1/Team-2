@@ -7,21 +7,27 @@
     background-repeat: no-repeat;
   }
 </style>
+
+<!-- Header Part -->
 <head>
+  <!-- The Meta Is For The Responsive Part -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
-  <title> Treasure Hunt Web App</title>
+  <title> Treasure Hunt Main Menu</title>
+  <!-- Connected The Html With Css -->
   <link rel="stylesheet" href="sample.css"/>
-
-
 </head>
+
+<!-- Body Part -->
 <body onload="doList();" id="app">
 
+<!-- Div For The Header 1 -->
 <div >
   <h1 align="center">  Treasure Hunt </h1>
   <hr>
 </div>
 
-<div style="color: darkblue">
+<!-- Div For Paragraphs And Styling A Text -->
+<div style="color:white;  font-size: 20px; text-shadow: 2px 2px 4px cyan, 4px 4px 25px black">
   <p>
     Ahoy matey! Welcome to Treasure Hunt, the app game where ye can test yer pirate knowledge and plunder hidden treasures along the way!
   </p>
@@ -31,26 +37,30 @@
   <p>Remember, only the bravest and most knowledgeable pirates can claim the ultimate prize of being crowned the Pirate King or Queen. So hoist the Jolly Roger and get ready for a pirate adventure ye won't soon forget!</p>
 </div>
 
-<div>
+<br>
+
+<!-- Div For Connect a Button Element With Start Html So That When We Click It We are Taken To The Start Html -->
+<div class="Menu Button">
   <button id="buttonHandleList" onclick="doList()">Reload</button>
 </div>
 
 <!--<div id="buttonReload" class="button" onclick="handleList(this)">Reload</div>-->
 <div id="loader" class="loader" hidden></div>
 
-<div style="color: darkblue">Choose a treasure Hunt </div>
+<br>
 
-<div id="treasureHunts" style="color: darkblue" >
+<!-- Div For Write a Text And Styling -->
+<div style="color:white; height:30px;  font-size: 25px; text-shadow: 2px 2px 4px gold, 4px 4px 25px gold; text-decoration: underline">$Choose Adventure$</div>
 
-</div>
+<!-- Div For Styling Some Text -->
+<div id="treasureHunts" style="color:white; font-size: 20px; text-shadow: 2px 2px 4px black, 4px 4px 5px cyan" ></div>
 
-<div id="message" class="infoMessage">
+<div id="message" class="infoMessage"></div>
 
-</div>
+<!-- Java Script Part -->
 
 <!--Load the API JavaScript-->
-<script src="th-api.js">
-</script>
+<script src="th-api.js"></script>
 
 </body>
 </html>
