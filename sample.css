@@ -38,8 +38,6 @@ button:hover {
     color: gold;
 }
 
-
-
 div {
     margin: 10px;
 }
@@ -143,14 +141,13 @@ h2{
 }
 
 
-/*Make Responsive All Html Files For Mobile App */
+/*Make Responsive All Html Files For Mobile App With New Images*/
 @media screen and (max-width: 900px){
     #index{
         width:auto;
         background-image: url('phone_img.png');
         background-size: cover;
         background-repeat: no-repeat;
-
     }
 
     #app{
@@ -158,6 +155,16 @@ h2{
         background-image: url('phone_img2.png');
         background-size: cover;
         background-repeat: no-repeat;
+
+
+    }
+
+    #Start{
+        width:auto;
+        background-image: url('phone_img3.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
 
 
     }
