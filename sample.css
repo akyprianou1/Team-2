@@ -148,6 +148,7 @@ h2{
         background-image: url('phone_img.png');
         background-size: cover;
         background-repeat: no-repeat;
+        background-position: center;
     }
 
     #app{
