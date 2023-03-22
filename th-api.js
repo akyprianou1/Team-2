@@ -89,7 +89,7 @@ function answerGiven() {
             if (jsonObject.status === "OK") {
                 //Update score
                 let score = Number(localStorage.getItem("Score"));
-                if (score == null) {
+                if (score == null){
                     score = 0;
                 }
                 score += jsonObject.scoreAdjustment;
@@ -116,13 +116,13 @@ function answerGiven() {
 }
 
 
-
 function startGame() {
     const params = new URLSearchParams(location.search);
     let uuid = null;
-
     let playerNameField = document.getElementById("playerName");
     let appName = "Team2-App";
+
+    localStorage.setItem("Score", "0");  //reset score
 
     if (params.has("treasureHuntID")) {
         uuid = params.get("treasureHuntID");
@@ -151,6 +151,34 @@ function startGame() {
 
         });
 }
+
+
+function leaderBoard(){
+    let session = localStorage.getItem("SessionID");
+    let session_url = "https://codecyprus.org/th/api/leaderboard?session=" + session;
+    console.log(session_url);
+
+    fetch(session_url)
+        .then(response => response.json())
+        .then(jsonObject => {
+            console.log(jsonObject);
+
+            if (jsonObject.status === "OK") {
+                let list_length = (jsonObject.leaderboard).length;
+                console.log("List: ",list_length);
+
+                document.getElementById("leaderboard_name").innerHTML = jsonObject.leaderboard[0];
+                document.getElementById("leaderboard_name").innerHTML = jsonObject.leaderboard[1];
+                document.getElementById("leaderboard_name").innerHTML = jsonObject.leaderboard[2];
+            }
+            else {
+                alert("Error!");
+            }
+        });
+}
+
+
+
 
 
 function locationGiven(){
