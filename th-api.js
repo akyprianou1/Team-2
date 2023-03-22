@@ -47,7 +47,7 @@ async function select(uuid) {
     console.log("Selected treasure hunt with UUID: " + uuid);
 }
 
-function sessionGame() {
+function getQuestion() {
 
     let session = localStorage.getItem("SessionID");
     let session_url = "https://codecyprus.org/th/api/question?session=" + session;
@@ -70,10 +70,16 @@ function sessionGame() {
 
 
 
-function answerGiven(){
-    let session = localStorage.getItem("GameSession");
+function answerGiven() {
+    let session = localStorage.getItem("SessionID");
     let answer = document.getElementById("answerGiven");
-    let answer_url = "https://codecyprus.org/th/api/answer?session=" + session +"&answer="+answer;
+
+    if (answer.value === "" || answer.value == null) {
+        alert("Please provide an answer.");
+        return;
+    }
+
+    let answer_url = "https://codecyprus.org/th/api/answer?session=" + session + "&answer=" + answer.value;
     console.log(answer_url);
     fetch(answer_url)
         .then(response => response.json())
@@ -81,17 +87,33 @@ function answerGiven(){
             console.log(jsonObject);
 
             if (jsonObject.status === "OK") {
-               let score = localStorage.getItem("Score");
-                document.getElementById("Score").innerHTML = "Score : ", jsonObject.scoreAdjustment + score;
-                localStorage.setItem("Score", score + jsonObject.scoreAdjustment );
-            }
-            else {
-                alert("Error!");
+                //Update score
+                let score = Number(localStorage.getItem("Score"));
+                if (score == null) {
+                    score = 0;
+                }
+                score += jsonObject.scoreAdjustment;
+                localStorage.setItem("Score", score);
+                document.getElementById("Score").innerHTML = "Score: " + score;
+
+
+                //Show message
+                alert(jsonObject.message);
+
+                if (jsonObject.correct) {
+                    if (jsonObject.completed) {
+                        location.href = "scoreboard.html";
+                    }
+                    else {
+                        getQuestion();
+                        answer.value = "";
+                    }
+                }
+            } else {
+                alert("Error: " + jsonObject.errorMessages[0]);
             }
         });
 }
-
-
 
 
 
@@ -129,38 +151,6 @@ function startGame() {
 
         });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function locationGiven(){
