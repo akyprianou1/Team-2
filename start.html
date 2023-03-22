@@ -1,17 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Style Element For Set A Background -->
+<style>
+    body{
+        background-image: url('Aboard.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+
+    }
+</style>
+
+<!-- Header Part -->
 <head>
+    <!-- The Meta Is For The Responsive Part -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
-    <title>Start page</title>
+    <title>Treasure Hunt Challenge</title>
+    <!-- Connected The Html With Css -->
+    <link rel="stylesheet" href="sample.css"/>
 </head>
-<body>
+
+<!-- Body Part -->
+<body align="center" style="padding-top:250px" id="Start"> <!-- Position Of All The Body Part -->
+
+<!-- Div For The Header 3 And For Some Text -->
+<div>
+    <!-- Styling The H3 Text (Color,Shadows,Fonts Type, Size) -->
+    <h3 style="color:white; font-family: Brush Script MT; font-size:60px; text-shadow: 2px 2px 4px rebeccapurple, 4px 4px 25px rebeccapurple; text-decoration: underline;">
+        <b>Welcome Aboard</b>
+    </h3>
+</div>
 
 
-<p>Enter your name, matey:</p>
+<!-- Div For Styling The Text (Color,Shadows,Fonts Type,Size)-->
+<div style="color:white; font-family:Lucida Handwriting; font-size:20px; text-shadow: 2px 2px 4px gold, 4px 4px 25px goldenrod">
+    <b>Enter Your Name, Matey:</b>
+</div>
+
+<br>
+
+<!-- Box To Enter A Name And Start The Game When We Click It We are Taken To The Session Html -->
 <input type="text" id="playerName" />
 <a><input type="button" value="Start" onclick="startGame();"/></a>
 
+
+<br>
+<br>
+
+<!-- Div For Styling The Text (Color,Shadows,Fonts Type, Size)-->
+<div style="color:white; height:400px; font-family: Brush Script MT; font-size:40px; text-shadow: 2px 2px 4px rebeccapurple, 4px 4px  rebeccapurple">
+    <b>Ready For Your Journey Of Your LIfe!</b>
+</div>
+
+<!-- Java Script Part -->
+
+<!--Load the API JavaScript-->
 <script src="th-api.js">
 </script>
+
 </body>
 </html>
