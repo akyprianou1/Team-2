@@ -60,6 +60,18 @@ function getQuestion() {
 
             if (jsonObject.status === "OK") {
                 document.getElementById("question").innerHTML = jsonObject.questionText;
+                if(jsonObject.canBeSkipped == true)
+                {
+                    document.getElementById('skip').style.visibility = 'visible';
+                }
+                else
+                {
+                    document.getElementById('skip').style.visibility = 'hidden';
+                }
+                if(jsonObject.completed == true)
+                {
+                    location.href = "leaderboard.html";
+                }
             }
             else {
                 alert("Error!");
@@ -102,7 +114,7 @@ function answerGiven() {
 
                 if (jsonObject.correct) {
                     if (jsonObject.completed) {
-                        location.href = "scoreboard.html";
+                        location.href = "leaderboard.html";
                     }
                     else {
                         getQuestion();
@@ -133,6 +145,7 @@ function startGame() {
     }
 
     let playerName = playerNameField.value;
+    localStorage.setItem("name", playerName);
     let url = "https://codecyprus.org/th/api/start?player=" + playerName + "&app=" + appName + "&treasure-hunt-id=" + uuid;
     fetch(url)
         .then(response => response.json())
@@ -155,7 +168,58 @@ function startGame() {
 
 function leaderBoard(){
     let session = localStorage.getItem("SessionID");
-    let session_url = "https://codecyprus.org/th/api/leaderboard?session=" + session;
+    let session_url = "https://codecyprus.org/th/api/leaderboard?session=" + session + "&sorted";
+
+    let player_score = "https://codecyprus.org/th/api/leaderboard?session=" + session;
+
+    console.log(session_url);
+    var table = document.getElementById("table");
+    fetch(session_url)
+        .then(response => response.json())
+        .then(jsonObject => {
+            console.log(jsonObject);
+
+            if (jsonObject.status === "OK") {
+                let list_length = (jsonObject.leaderboard).length;
+                console.log("List: ", list_length);   //list length
+
+
+                for (let i = 0; i < 30; i++)
+                {
+                    var row = table.insertRow( i + 1);
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
+                    cell1.innerHTML = i+". " +jsonObject.leaderboard[i].player;
+                    cell2.innerHTML = jsonObject.leaderboard[i].score;
+                    cell3.innerHTML = jsonObject.leaderboard[i].completionTime;
+                }
+
+                for (let i = 0; i < list_length; i++)
+                {
+                    if (localStorage.getItem("name") == jsonObject.leaderboard[i].player )
+                    {
+                        var row = table.insertRow(31);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        var cell3 = row.insertCell(2);
+                        cell1.innerHTML = i+". " + jsonObject.leaderboard[i].player;
+                        cell2.innerHTML = jsonObject.leaderboard[i].score;
+                        cell3.innerHTML = jsonObject.leaderboard[i].completionTime;
+                    }
+                }
+            }
+            else {
+                    alert("Error!");
+                }
+        });
+
+}
+
+
+function skipMaybe(){
+    let session = localStorage.getItem("SessionID");
+    let session_url = "https://codecyprus.org/th/api/skip?session=" + session;
     console.log(session_url);
 
     fetch(session_url)
@@ -164,20 +228,22 @@ function leaderBoard(){
             console.log(jsonObject);
 
             if (jsonObject.status === "OK") {
-                let list_length = (jsonObject.leaderboard).length;
-                console.log("List: ",list_length);
+                alert("Question Skipped");
+                let score = Number(localStorage.getItem("Score"));
+                if (score == null){
+                    score = 0;
+                }
+                score += Number(jsonObject.scoreAdjustment);
+                localStorage.setItem("Score", score);
+                document.getElementById("Score").innerHTML = "Score: " + score;
 
-                document.getElementById("leaderboard_name").innerHTML = jsonObject.leaderboard[0];
-                document.getElementById("leaderboard_name").innerHTML = jsonObject.leaderboard[1];
-                document.getElementById("leaderboard_name").innerHTML = jsonObject.leaderboard[2];
+                getQuestion();
             }
             else {
                 alert("Error!");
             }
         });
 }
-
-
 
 
 

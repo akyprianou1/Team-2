@@ -34,7 +34,7 @@
 </div>
 
 <!-- Div For Styling All The ID Texts (Color,Shadows,Fonts Type, Size) -->
-<div id="Score" style="color:white; font-family: Lucida Handwriting; font-size:30px; text-shadow: 2px 2px 4px orangered, 4px 4px 25px orangered;"></div>
+<div id="Score" style="color:white; font-family: Lucida Handwriting; font-size:30px; text-shadow: 2px 2px 4px orangered, 4px 4px 25px orangered;">Score: 0</div>
 <div id="QNumber" style="color:white; font-family: Lucida Handwriting; font-size:30px; text-shadow: 2px 2px 4px orange, 4px 4px 25px orange;"></div>
 <div  id="question" style="color:white; font-family: Lucida Handwriting; font-size:30px; text-shadow: 2px 2px 4px grey, 4px 4px 25px grey;" ></div>
 
@@ -42,6 +42,7 @@
 <div>
     <input type="text" id="answerGiven" />
     <input type="button" value="Submit" onclick="answerGiven(); " />
+    <input type="button" value="Skip" id="skip" onclick="skipMaybe();" />
 </div>
 
 <br>
