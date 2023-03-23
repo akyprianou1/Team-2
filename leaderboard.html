@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Style Element For Set A Background -->
+<style>
+  body{
+    background-image: url('The Pirate Gold.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+  }
+</style>
+
+<!-- Header Part -->
 <head>
+  <!-- The Meta Is For The Responsive Part -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
-  <title>Leaderboard page</title>
+  <title>Lets The Fight Begin</title>
+  <!-- Connected The Html With Css -->
+  <link rel="stylesheet" href="sample.css"/>
 </head>
-<body onload="leaderBoard();">
-<table style="width:100%; border:1px; border-style:solid; text-align: center;" id="table">
+
+<!-- Body Part -->
+<body onload="leaderBoard();" align="center"  id="LeaderBoards"> <!-- Position Of All The Body Part And ID For the Responsive Part -->
+
+<!-- Div For The Header 5 And For Some Text -->
+<div>
+  <!-- Styling The H5 Text (Color,Shadows,Fonts Type, Size) -->
+  <h5 style="color:white; font-family: Palace Script MT; font-size:70px; text-shadow: 2px 2px 4px gold, 4px 4px 25px gold; text-decoration: underline;">
+    <b>LeaderBoards:</b>
+  </h5>
+</div>
+
+<!-- Div For Styling The Text (Color,Shadows,Fonts Type, Size) -->
+<div style="color:white;  font-family: Brush Script MT; font-size:50px; text-shadow: 2px 2px 4px gold, 4px 4px  gold">
+  <b>Congratulations Matey! <br> You Are The True King Or Queen OF the Seven Seas</b>
+</div>
+
+<!-- Table Element For Javascript Data And Styling All The Text (Color,Shadows,Fonts Type,Size, Border) -->
+<table style="width:100%; border:5px saddlebrown; border-style:solid; text-align: center; " id="table">
   <tr>
-    <th>Player Name</th>
-    <th>Score</th>
-    <th>Completion Time</th>
+    <th style="color: gold; text-decoration: underline">Player Name <br><br></th>
+    <th style="color: gold; text-decoration: underline">Score <br><br></th>
+    <th style="color: gold; text-decoration: underline">Completion Time <br><br></th>
   </tr>
 </table>
 
-<button  onclick="location.href='index.html';">Back to the main page</button>
+<br>
+<br>
+
+<!-- Connect a Button Element With Index Html So That When We Click It We are Taken To The Index Html -->
+<div class="Lead Button">
+<button  onclick="location.href='index.html';">Lets Start Over Again</button>
+</div>
+
+
+<!-- Java Script Part -->
+
+<!--Load the API JavaScript -->
 <script src="th-api.js">
 </script>
 

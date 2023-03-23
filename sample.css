@@ -38,6 +38,22 @@ button:hover {
     color: gold;
 }
 
+/*Styling The Button in LeaderBoards*/
+.Lead Button {
+    background-color: saddlebrown;
+    color: white;
+    border-radius: 20px;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+/*Set a Hover in LeaderBoards Button and styling it*/
+.Lead Button:hover {
+    background-color: gold;
+    color: saddlebrown;
+}
+
 div {
     margin: 10px;
 }
@@ -204,5 +220,16 @@ h2{
 
 
     }
+
+    #LeaderBoards{
+        width:auto;
+        background-image: url('phone_img5.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+
+
+    }
+
 }
 
