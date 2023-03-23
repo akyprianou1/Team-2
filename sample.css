@@ -151,6 +151,13 @@ h2{
         background-position: center;
     }
 
+    #H1{
+        font-size: 17px;
+    }
+
+
+
+
     #app{
         width:auto;
         background-image: url('phone_img2.png');
