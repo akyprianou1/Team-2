@@ -88,6 +88,24 @@ div.testMessage {
     100% { transform: rotate(360deg); }
 }
 
+/*Styling All The Links*/
+a {
+    background-color: darkcyan;
+    color: white;
+    border-radius: 40%;
+    text-decoration: none;
+    font-size: 18px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+/*Set a Hover in Links and styling it*/
+a:hover{
+    background-color: black;
+    color: gold;
+}
+
+
 /*Styling The headers 2*/
 h2{
     text-shadow: 2px 2px 4px red, 4px 4px 25px red;
@@ -150,6 +168,13 @@ h2{
         background-repeat: no-repeat;
         background-position: center;
     }
+
+    #H1{
+        font-size: 17px;
+    }
+
+
+
 
     #app{
         width:auto;
