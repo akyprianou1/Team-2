@@ -169,5 +169,15 @@ h2{
 
 
     }
+
+    #Session{
+        width:auto;
+        background-image: url('phone_img4.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+
+
+    }
 }
 

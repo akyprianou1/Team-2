@@ -1,26 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Style Element For Set A Background -->
+<style>
+    body{
+        background-image: url('War.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+
+    }
+</style>
+
+<!-- Header Part -->
 <head>
+    <!-- The Meta Is For The Responsive Part -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
-    <title>Session page</title>
+    <title>Lets Fight Begin</title>
+    <!-- Connected The Html With Css -->
+    <link rel="stylesheet" href="sample.css"/>
 </head>
-<body onload="getQuestion();">
-<div id="Score"></div>
-<div id="QNumber"></div>
-<div id="question"></div>
+
+
+<!-- Body Part -->
+<body onload="getQuestion();" align="center" style="padding-top:250px" id="Session"> <!-- Position Of All The Body Part And ID For the Responsive Part -->
+
+
+<!-- Div For The Header 4 And For Some Text -->
+<div>
+    <!-- Styling The H3 Text (Color,Shadows,Fonts Type, Size) -->
+    <h4 style="color:slategrey; font-family: Brush Script MT; font-size:80px; text-shadow: 2px 2px 4px darkorange, 4px 4px 25px darkorange; text-decoration: underline;">
+        <b>Fight With Your Life Matey!</b>
+    </h4>
+</div>
+
+<!-- Div For Styling All The ID Texts (Color,Shadows,Fonts Type, Size) -->
+<div id="Score" style="color:white; font-family: Lucida Handwriting; font-size:30px; text-shadow: 2px 2px 4px orangered, 4px 4px 25px orangered;"></div>
+<div id="QNumber" style="color:white; font-family: Lucida Handwriting; font-size:30px; text-shadow: 2px 2px 4px orange, 4px 4px 25px orange;"></div>
+<div  id="question" style="color:white; font-family: Lucida Handwriting; font-size:30px; text-shadow: 2px 2px 4px grey, 4px 4px 25px grey;" ></div>
+
+<!-- Div Button For Submit The Answers  -->
 <div>
     <input type="text" id="answerGiven" />
     <input type="button" value="Submit" onclick="answerGiven(); " />
+</div>
+
+<br>
+
+<!-- Div For Styling The Text (Color,Shadows,Fonts Type, Size)-->
+<div style="color:slategrey; height:400px; font-family: Brush Script MT; font-size:60px; text-shadow: 2px 2px 4px darkorange, 4px 4px  darkorange">
+    <b>*Lets Make A History Shall WE*</b>
 </div>
 
 
 
 
 
+<!-- Java Script Part -->
 
-
-
-
+<!--Load the API JavaScript-->
 <script src="th-api.js">
 </script>
 
