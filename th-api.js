@@ -190,7 +190,7 @@ function leaderBoard(){
                     var cell1 = row.insertCell(0);
                     var cell2 = row.insertCell(1);
                     var cell3 = row.insertCell(2);
-                    cell1.innerHTML = i+". " +jsonObject.leaderboard[i].player;
+                    cell1.innerHTML = Number(i+1)+". " +jsonObject.leaderboard[i].player;
                     cell2.innerHTML = jsonObject.leaderboard[i].score;
                     cell3.innerHTML = jsonObject.leaderboard[i].completionTime;
                 }
@@ -203,7 +203,7 @@ function leaderBoard(){
                         var cell1 = row.insertCell(0);
                         var cell2 = row.insertCell(1);
                         var cell3 = row.insertCell(2);
-                        cell1.innerHTML = i+". " + jsonObject.leaderboard[i].player;
+                        cell1.innerHTML = Number(i+1)+". " + jsonObject.leaderboard[i].player;
                         cell2.innerHTML = jsonObject.leaderboard[i].score;
                         cell3.innerHTML = jsonObject.leaderboard[i].completionTime;
                     }
