@@ -226,16 +226,22 @@ function skipMaybe(){
             console.log(jsonObject);
 
             if (jsonObject.status === "OK") {   //if server data is okay
-                alert("Question Skipped");
-                let score = Number(localStorage.getItem("Score"));      // pull score from the local storage
-                if (score == null){         // if there is no score, initialized score value to 0
-                    score = 0;
-                }
-                score += Number(jsonObject.scoreAdjustment);      // adjust score
-                localStorage.setItem("Score", score);               // save score in the local storage
-                document.getElementById("Score").innerHTML = "Score: " + score;    // show/update score as you play
+                let text;
+                if (confirm("Are you sure you want to skip the question?") == true) {
+                    alert("Question Skipped");
+                    let score = Number(localStorage.getItem("Score"));      // pull score from the local storage
+                    if (score == null){         // if there is no score, initialized score value to 0
+                        score = 0;
+                    }
+                    score += Number(jsonObject.scoreAdjustment);      // adjust score
+                    localStorage.setItem("Score", score);               // save score in the local storage
+                    document.getElementById("Score").innerHTML = "Score: " + score;    // show/update score as you play
 
-                getQuestion();      // get the next question
+                    getQuestion();      // get the next question
+                } else {
+                    alert("You canceled the skip!");
+                }
+
             }
             else {
                 alert("Error!");    // show error in case server status is not okay
