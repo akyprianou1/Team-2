@@ -22,7 +22,23 @@ button:hover {
     color: goldenrod;
 }
 
-/*Styling The Button in Menu*/
+/*Styling The Testing Button in Index*/
+.Testing Button {
+    background-color: black;
+    color: red;
+    border-radius: 20px;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+/*Set a Hover in Testing Button and styling it*/
+.Testing Button:hover {
+    background-color: black;
+    color: cyan;
+}
+
+/*Styling The Button in App*/
 .Menu Button {
     background-color: cyan;
     color: mediumpurple;
@@ -48,11 +64,28 @@ button:hover {
     cursor: pointer;
 }
 
-/*Set a Hover in LeaderBoards Button and styling it*/
+/*Set a Hover in Lead Button and styling it*/
 .Lead Button:hover {
     background-color: gold;
     color: saddlebrown;
 }
+
+/*Styling The Button in Testing*/
+.Info Button {
+    background-color: Black;
+    color: red;
+    border-radius: 20px;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+/*Set a Hover in Info Button and styling it*/
+.Info Button:hover {
+    background-color: red;
+    color: white;
+}
+
 
 div {
     margin: 10px;
@@ -229,6 +262,14 @@ footer{
         background-position: center;
 
 
+    }
+
+    #Testing{
+        width:auto;
+        background-image: url('phone_img6.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 
 }
