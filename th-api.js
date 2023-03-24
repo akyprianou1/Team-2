@@ -226,7 +226,6 @@ function skipMaybe(){
             console.log(jsonObject);
 
             if (jsonObject.status === "OK") {   //if server data is okay
-                let text;
                 if (confirm("Are you sure you want to skip the question?") == true) {
                     alert("Question Skipped");
                     let score = Number(localStorage.getItem("Score"));      // pull score from the local storage
