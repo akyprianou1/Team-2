@@ -49,32 +49,32 @@ async function select(uuid) {
 
 function getQuestion() {
 
-    let session = localStorage.getItem("SessionID");
-    let session_url = "https://codecyprus.org/th/api/question?session=" + session;
+    let session = localStorage.getItem("SessionID");   // get session id from local storage
+    let session_url = "https://codecyprus.org/th/api/question?session=" + session;  // make the url
     console.log(session_url);
 
-    fetch(session_url)
+    fetch(session_url)      // fetch data from the url
         .then(response => response.json())
         .then(jsonObject => {
            console.log(jsonObject);
 
-            if (jsonObject.status === "OK") {
-                document.getElementById("question").innerHTML = jsonObject.questionText;
-                if(jsonObject.canBeSkipped == true)
+            if (jsonObject.status === "OK") {       // if server status is okay
+                document.getElementById("question").innerHTML = jsonObject.questionText;      // get question and show it in the box with id= question
+                if(jsonObject.canBeSkipped == true)     // if the question can be skipped then show the skip button
                 {
                     document.getElementById('skip').style.visibility = 'visible';
                 }
-                else
+                else        // if question can not be skipped then hide buttom
                 {
                     document.getElementById('skip').style.visibility = 'hidden';
                 }
-                if(jsonObject.completed == true)
+                if(jsonObject.completed == true)        // if all questions are finished then proceed to the leaderboard page
                 {
                     location.href = "leaderboard.html";
                 }
             }
             else {
-                alert("Error!");
+                alert("Error!");  // is server status is not okay then show an error
             }
         });
 }
@@ -83,46 +83,46 @@ function getQuestion() {
 
 
 function answerGiven() {
-    let session = localStorage.getItem("SessionID");
-    let answer = document.getElementById("answerGiven");
+    let session = localStorage.getItem("SessionID");  // get session id from the local storage
+    let answer = document.getElementById("answerGiven");    // get answer given from local storage
 
-    if (answer.value === "" || answer.value == null) {
+    if (answer.value === "" || answer.value == null) {      // if no answer was given then show an error and to try again
         alert("Please provide an answer.");
         return;
     }
 
-    let answer_url = "https://codecyprus.org/th/api/answer?session=" + session + "&answer=" + answer.value;
+    let answer_url = "https://codecyprus.org/th/api/answer?session=" + session + "&answer=" + answer.value;  // make url to check answer
     console.log(answer_url);
-    fetch(answer_url)
+    fetch(answer_url)  // get data from the url
         .then(response => response.json())
         .then(jsonObject => {
             console.log(jsonObject);
 
-            if (jsonObject.status === "OK") {
+            if (jsonObject.status === "OK") {       // if server status is okay
                 //Update score
-                let score = Number(localStorage.getItem("Score"));
-                if (score == null){
+                let score = Number(localStorage.getItem("Score")); // get score from the local storage
+                if (score == null){     // if the score has not been initialized then initialize score to 0
                     score = 0;
                 }
-                score += jsonObject.scoreAdjustment;
-                localStorage.setItem("Score", score);
-                document.getElementById("Score").innerHTML = "Score: " + score;
+                score += jsonObject.scoreAdjustment;        // update score accordingly
+                localStorage.setItem("Score", score);       // save the score in the local storage
+                document.getElementById("Score").innerHTML = "Score: " + score; // show updated score
 
 
                 //Show message
                 alert(jsonObject.message);
 
                 if (jsonObject.correct) {
-                    if (jsonObject.completed) {
+                    if (jsonObject.completed) {  // if all questions are done proceed to leaderboard
                         location.href = "leaderboard.html";
                     }
                     else {
-                        getQuestion();
-                        answer.value = "";
+                        getQuestion();      // else get question
+                        answer.value = "";  // and reset the answer field
                     }
                 }
             } else {
-                alert("Error: " + jsonObject.errorMessages[0]);
+                alert("Error: " + jsonObject.errorMessages[0]); // show error if server not okay
             }
         });
 }
@@ -130,36 +130,36 @@ function answerGiven() {
 
 function startGame() {
     const params = new URLSearchParams(location.search);
-    let uuid = null;
-    let playerNameField = document.getElementById("playerName");
-    let appName = "Team2-App";
+    let uuid = null;        // treasure hunt id initialized
+    let playerNameField = document.getElementById("playerName");   // get player Name
+    let appName = "Team2-App";                  // fixed app name
 
-    localStorage.setItem("Score", "0");  //reset score
+    localStorage.setItem("Score", "0");  // initialized/reset score
 
-    if (params.has("treasureHuntID")) {
+    if (params.has("treasureHuntID")) {   // get treasure hunt id if it exists
         uuid = params.get("treasureHuntID");
         console.log("TreasureHuntID");
     }
     else {
-        alert("No UUID");
+        alert("No UUID");   // alert that there is no treasure hunt
     }
 
     let playerName = playerNameField.value;
-    localStorage.setItem("name", playerName);
-    let url = "https://codecyprus.org/th/api/start?player=" + playerName + "&app=" + appName + "&treasure-hunt-id=" + uuid;
+    localStorage.setItem("name", playerName);   //save player name in local storage
+    let url = "https://codecyprus.org/th/api/start?player=" + playerName + "&app=" + appName + "&treasure-hunt-id=" + uuid;   // get url to pull data from server
     fetch(url)
         .then(response => response.json())
         .then(jsonObject => {
 
-            if (jsonObject.status === "OK") {
-                const sessionID = jsonObject.session;
-                const numOfQuestions = jsonObject.numOfQuestions;
-                localStorage.setItem("SessionID", sessionID );
-                localStorage.setItem("numOfQuestions", numOfQuestions);
-                location.href = "session.html";
+            if (jsonObject.status === "OK") {           //if server status is okay
+                const sessionID = jsonObject.session;       // get session id
+                const numOfQuestions = jsonObject.numOfQuestions;       // get number of questions
+                localStorage.setItem("SessionID", sessionID );          // save session id in local storage
+                localStorage.setItem("numOfQuestions", numOfQuestions);  // save number of questions in local storage
+                location.href = "session.html";         // after we fetch session id we continue to the next page with the session
             }
             else {
-                alert("Error!");
+                alert("Error!");        // message alert in case of error
             }
 
         });
@@ -167,30 +167,28 @@ function startGame() {
 
 
 function leaderBoard(){
-    let session = localStorage.getItem("SessionID");
-    let session_url = "https://codecyprus.org/th/api/leaderboard?session=" + session + "&sorted";
-
-    let player_score = "https://codecyprus.org/th/api/leaderboard?session=" + session;
+    let session = localStorage.getItem("SessionID");      // pull session id
+    let session_url = "https://codecyprus.org/th/api/leaderboard?session=" + session + "&sorted";  // get url for the session id
 
     console.log(session_url);
-    var table = document.getElementById("table");
-    fetch(session_url)
+    var table = document.getElementById("table");       // get to the table
+    fetch(session_url)                      // fetch data from the url
         .then(response => response.json())
         .then(jsonObject => {
             console.log(jsonObject);
 
-            if (jsonObject.status === "OK") {
-                let list_length = (jsonObject.leaderboard).length;
+            if (jsonObject.status === "OK") {           //if server status is okay
+                let list_length = (jsonObject.leaderboard).length;      // pull the number of players in the scoreboard
                 console.log("List: ", list_length);   //list length
 
 
-                for (let i = 0; i < 30; i++)
+                for (let i = 0; i < 30; i++)            // for loop to get the first top 30 players
                 {
-                    var row = table.insertRow( i + 1);
-                    var cell1 = row.insertCell(0);
+                    var row = table.insertRow( i + 1);        // insert row in the premade table
+                    var cell1 = row.insertCell(0);              // insert cells in the row we made
                     var cell2 = row.insertCell(1);
                     var cell3 = row.insertCell(2);
-                    cell1.innerHTML = Number(i+1)+". " +jsonObject.leaderboard[i].player;
+                    cell1.innerHTML = Number(i+1)+". " +jsonObject.leaderboard[i].player;               // add respective data to each cell
                     cell2.innerHTML = jsonObject.leaderboard[i].score;
                     cell3.innerHTML = jsonObject.leaderboard[i].completionTime;
                 }
@@ -199,18 +197,18 @@ function leaderBoard(){
                 {
                     if (localStorage.getItem("name") == jsonObject.leaderboard[i].player )
                     {
-                        var row = table.insertRow(31);
-                        var cell1 = row.insertCell(0);
+                        var row = table.insertRow(31);       // insert row in the premade table
+                        var cell1 = row.insertCell(0);       // insert cells in the row we made
                         var cell2 = row.insertCell(1);
                         var cell3 = row.insertCell(2);
-                        cell1.innerHTML = Number(i+1)+". " + jsonObject.leaderboard[i].player;
+                        cell1.innerHTML = Number(i+1)+". " + jsonObject.leaderboard[i].player;      // add respective data to each cell
                         cell2.innerHTML = jsonObject.leaderboard[i].score;
                         cell3.innerHTML = jsonObject.leaderboard[i].completionTime;
                     }
                 }
             }
             else {
-                    alert("Error!");
+                    alert("Error!");          // error if server status is not ok
                 }
         });
 
@@ -218,36 +216,36 @@ function leaderBoard(){
 
 
 function skipMaybe(){
-    let session = localStorage.getItem("SessionID");
-    let session_url = "https://codecyprus.org/th/api/skip?session=" + session;
+    let session = localStorage.getItem("SessionID"); // pull session id from the local storage
+    let session_url = "https://codecyprus.org/th/api/skip?session=" + session;  // make url for the skip button
     console.log(session_url);
 
-    fetch(session_url)
+    fetch(session_url)      // fetch data from the made url
         .then(response => response.json())
         .then(jsonObject => {
             console.log(jsonObject);
 
-            if (jsonObject.status === "OK") {
+            if (jsonObject.status === "OK") {   //if server data is okay
                 alert("Question Skipped");
-                let score = Number(localStorage.getItem("Score"));
-                if (score == null){
+                let score = Number(localStorage.getItem("Score"));      // pull score from the local storage
+                if (score == null){         // if there is no score, initialized score value to 0
                     score = 0;
                 }
-                score += Number(jsonObject.scoreAdjustment);
-                localStorage.setItem("Score", score);
-                document.getElementById("Score").innerHTML = "Score: " + score;
+                score += Number(jsonObject.scoreAdjustment);      // adjust score
+                localStorage.setItem("Score", score);               // save score in the local storage
+                document.getElementById("Score").innerHTML = "Score: " + score;    // show/update score as you play
 
-                getQuestion();
+                getQuestion();      // get the next question
             }
             else {
-                alert("Error!");
+                alert("Error!");    // show error in case server status is not okay
             }
         });
 }
 
 
 
-function locationGiven(){
+function locationGiven(){                                   // LOCATION PROTOTYPE
     let session = localStorage.getItem("GameSession");
     let location = "https://codecyprus.org/th/api/location?session="+ session;
     console.log(location);
