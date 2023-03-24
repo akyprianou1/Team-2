@@ -23,6 +23,20 @@
 <!-- Body Part -->
 <body align="center" style="padding-top:250px" id="Testing">
 
+<h2>Unit Tests</h2>
+
+<p>The Unit Tests make use of the corresponding Testing API available at <a href="https://codecyprus.org/th/testing" target="_blank">https://codecyprus.org/th/testing</a>.</p>
+<div id="loader" class="loader" hidden></div>
+
+<h3>Testing <code>/list</code></h3>
+
+<button id="buttonTestList" class="button" onclick="handleTestList(5)">Run Test</button>
+<button id="buttonClearList" class="button" onclick="document.getElementById('treasureHunts').innerHTML = 'The results of the test to show up here...';">Clear</button>
+
+<div id="treasureHunts" class="testMessage">
+
+</div>
+
 
 <!-- Div For The Header 6 And For Some Text -->
 <div>
@@ -252,6 +266,7 @@
 </div>
 
 
+<script src="th-test-api.js"></script>
 
 </body>
 </html>
