@@ -220,32 +220,35 @@ function skipMaybe(){
     let session_url = "https://codecyprus.org/th/api/skip?session=" + session;  // make url for the skip button
     console.log(session_url);
 
-    fetch(session_url)      // fetch data from the made url
-        .then(response => response.json())
-        .then(jsonObject => {
-            console.log(jsonObject);
+    if (confirm("Are you sure you want to skip the question?")) {
 
-            if (jsonObject.status === "OK") {   //if server data is okay
-                if (confirm("Are you sure you want to skip the question?") == true) {
+        fetch(session_url)      // fetch data from the made url
+            .then(response => response.json())
+            .then(jsonObject => {
+                console.log(jsonObject);
+
+                if (jsonObject.status === "OK") {   //if server data is okay
+
                     alert("Question Skipped");
                     let score = Number(localStorage.getItem("Score"));      // pull score from the local storage
-                    if (score == null){         // if there is no score, initialized score value to 0
+                    if (score == null) {         // if there is no score, initialized score value to 0
                         score = 0;
                     }
                     score += Number(jsonObject.scoreAdjustment);      // adjust score
                     localStorage.setItem("Score", score);               // save score in the local storage
                     document.getElementById("Score").innerHTML = "Score: " + score;    // show/update score as you play
 
-                    getQuestion();      // get the next question
-                } else {
-                    alert("You canceled the skip!");
-                }
+                    getQuestion();
+                }// get the next question
 
-            }
-            else {
-                alert("Error!");    // show error in case server status is not okay
-            }
-        });
+            else
+                {
+                    alert("Error!");    // show error in case server status is not okay
+                }
+            });
+    } else {
+        alert("You canceled the skip!");
+    }
 }
 
 
